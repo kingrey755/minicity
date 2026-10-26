@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniCity 3D</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand"><span class="brand-icon">M</span> MiniCity <span class="brand-light">3D</span></div>
+        <div class="top-actions">
+            <span id="city-status">Ready to build</span>
+            <button id="clear-button" class="clear-button">Clear city</button>
+        </div>
+    </header>
+
+    <main class="workspace">
+        <aside class="sidebar">
+            <div class="section-label">BUILD TOOLS</div>
+
+            <button class="tool active" data-tool="select">
+                <span class="tool-icon">↖</span>
+                <span><strong>Select</strong><small>Choose a tool</small></span>
+            </button>
+
+            <div class="section-label">BUILDINGS</div>
+
+            <button class="tool" data-tool="small">
+                <span class="tool-icon building-small"></span>
+                <span><strong>Small building</strong><small>1 × 1 tiles</small></span>
+            </button>
+
+            <button class="tool" data-tool="medium">
+                <span class="tool-icon building-medium"></span>
+                <span><strong>Medium building</strong><small>2 × 2 tiles</small></span>
+            </button>
+
+            <button class="tool" data-tool="large">
+                <span class="tool-icon building-large"></span>
+                <span><strong>Large building</strong><small>3 × 3 tiles</small></span>
+            </button>
+
+            <button class="tool" data-tool="house">
+                <span class="tool-icon house-icon">⌂</span>
+                <span><strong>House</strong><small>1 × 1 tile</small></span>
+            </button>
+
+            <div class="section-label">INFRASTRUCTURE</div>
+
+            <button class="tool" data-tool="road">
+                <span class="tool-icon road-icon"></span>
+                <span><strong>Road</strong><small>Drag in a straight line</small></span>
+            </button>
+
+            <div class="sidebar-bottom">
+                <div class="tip-card">
+                    <span class="tip-title">HOW TO BUILD</span>
+                    <p>Select a tool, then click an empty tile. For roads, drag from the first tile to the last.</p>
+                    <p>Drag the mouse to rotate the camera. Scroll to zoom.</p>
+                </div>
+                <div class="legend"><span class="legend-dot"></span> <span id="object-count">0 objects placed</span></div>
+            </div>
+        </aside>
+
+        <section class="viewport">
+            <div id="city-view"></div>
+            <div class="viewport-label"><span class="live-dot"></span> CITY EDITOR <span class="label-divider">/</span> 3D MODE</div>
+            <div class="viewport-help">LEFT CLICK TO BUILD <span>•</span> DRAG TO ROTATE <span>•</span> SCROLL TO ZOOM</div>
+            <div id="toast" class="toast"></div>
+        </section>
+    </main>
+
+    <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
